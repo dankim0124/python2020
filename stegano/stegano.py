@@ -4,9 +4,9 @@
 
 from PIL import Image
 import os
+import sys
 
-
-def encode(img, msg):
+def encode(img, msg,imageName):
     # TODO: You need to convert the RGB to binary
     # Then we will adjust the pixels to encode the message binary value into the last bit.
     # Each letter will take three pixels, with a spare pixel unchanged.
@@ -18,7 +18,7 @@ def encode(img, msg):
     letterBinary = ""
     msgLength = len(msg)
     red, green, blue = pixels[0, 0]
-
+    secretName = imageName[:-4] + "_secret.png"
     pixels[0, 0] = (msgLength, green, blue)
 
     for i in range(msgLength * 3):
@@ -53,7 +53,8 @@ def encode(img, msg):
         pixels[x, y] = (red, green, blue)
         pixel +=1
     # Save the file that has now been encoded.
-    img.save("secretImg.png", 'png')
+    img.save(imageName[:-4] + "_secret.png", 'png')
+    print("secret Image : ",imageName[:-4] + "_secret.png")
 
 
 def decode(img):
@@ -129,23 +130,60 @@ def binaryToNumber(bin):
 
     return decimal
 
+def getPNG (fileList):
+    result = []
+    for file in fileList:
+        if file[-4:] == ".png":
+            result.append(file)
+    return result
 
 def main():
     # Ask user if they want to encode/decode
 
+    message=""
+    imageName = ""
+    userOption =input ("Enter user input ( Encode or Decode or End) : ")
+
+    if userOption == "Encode":
+        cwd = os.getcwd()
+        print("image available : ", getPNG(os.listdir(cwd)))
+        imageName = input("Choose image to convert : " )
+        message = input ("input your message : ")
+        myImg = Image.open(imageName)
+        encode(myImg, message,imageName)
+        myImg.close()
+        print ("Done!")
+
+    elif userOption =="Decode":
+        cwd = os.getcwd()
+        print("image available : ", getPNG(os.listdir(cwd)))
+        imageName = input("Choose image to convert : ")
+        yourImg = Image.open(imageName)
+        msg = decode(yourImg)
+        print("decoded message : ",msg)
+        print("Done!")
+
+    elif userOption =="End":
+        sys.exit()
+
+    """
     myImg = Image.open('pki.png')
     myMsg = "This is a secret message I will hide in an image."
     encode(myImg, myMsg)
     myImg.close()
 
-    """
+    userInput = input("Enter an option: Encode or Decode")
+
+    
     for i in range(256):
         print( " decimal :  %i\t binary : %s" %(i, numberToBinary(i)))
-        """
+        
     yourImg = Image.open('secretImg.png')
     msg = decode(yourImg)
     print(msg)
+    """
 
 
 if __name__ == '__main__':
-    main()
+    while(1):
+        main()
