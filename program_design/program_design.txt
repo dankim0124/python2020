@@ -1,0 +1,45 @@
+
+Personally, I prefer Option B, And I have 2 typical reasons and 2 personal idea about this issue.
+my personal issue can be different from idea of majority
+.
+There is important 2 points that buyer ask and  things that I personally count.
+
+2 Things that buyer ask is that
+    1) it should be real time data
+    2) buyer want to use this data to consult about insurance.
+
+So Here is typical reasons for this ask.
+
+    1) it should be real time data.
+        Actually,this information can have different meaning depending on how many employee they have.
+        and How many orders comes to this restaurant, how much traffic their server can handle.
+        This can be various, and there can be so many different cases, so I just assume that it is usual
+        restaurant which has not too much orders or not so small orders.
+        So if it is usual restaurant, I think size of GPS data doesn't matter to handle in real time.
+        the things that server should do is that collecting and saving GPS data and sending routing information to each
+        client app. I think server based on one personal computer can handle at least 200 client app which want to get routing data.
+        So, considering budget, I think real time thing can not be a problem.
+
+    2) Data for insurance.
+        Data for insurance can include data like, speeding in each location employee drive, or where they get accident.
+        which road they usually use, So all this data from GPS data should be saved in server computer.
+        So, data should be sent to server before calculate routing information.
+        Because, if they calculate their routing information before sending data to server and then send to server to save data in server
+        It must be waste of computing power.
+
+Here is my personal reasons.
+
+     I prefer heavy server and light client app.
+
+      1) Because I don't believe client device
+
+        especially about memory assigning. If i update app and ask them to extend their program size to get more assigned memory for calculating.
+        only few of them update their program on time.
+
+      2) each device has different OS and different issues, and it is really hard to maintenance.
+
+        It is why i don't prefer to make many functions in client app.
+        Because it can be really difficult to suit to each different devices.
+        I think the usual and robust way is that client app should work as little as possible.
+
+
